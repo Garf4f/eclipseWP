@@ -3,6 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="t1000" class ="ru.garf.eclipse.impls.robot.ModelT1000"/>
+	<bean id="t1000" class="ru.garf.eclipse.impls.robot.ModelT1000">
+<!-- 		<constructor-arg ref="sonyHand"/> -->
+<!-- 		<constructor-arg ref="sonyLeg"/> -->
+<!-- 		<constructor-arg ref="toshibaHead"/> -->
+
+			<property name="hand" ref="toshibaHand"/>
+			<property name="head" ref="toshibaHead"/>
+			<property name="leg" ref="toshibaLeg"/>
+	</bean>
+	
+	<bean id="sonyHand" class="ru.garf.eclipse.impls.sony.SonyHand"/>
+	<bean id="sonyHead" class="ru.garf.eclipse.impls.sony.SonyHead"/>
+	<bean id="sonyLeg" class="ru.garf.eclipse.impls.sony.SonyLeg"/>
+	
+	<bean id="toshibaHand" class="ru.garf.eclipse.impls.toshiba.ToshibaHand"/>
+	<bean id="toshibaHead" class="ru.garf.eclipse.impls.toshiba.ToshibaHead"/>
+	<bean id="toshibaLeg" class="ru.garf.eclipse.impls.toshiba.ToshibaLeg"/>
+	
+	
 	
 </beans>

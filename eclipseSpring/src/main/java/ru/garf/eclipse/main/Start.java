@@ -11,6 +11,7 @@ public class Start {
 		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
 		Robot t1000 = (Robot) context.getBean("t1000");
 		t1000.dance();
+		t1000.action();
 
 	}
 
