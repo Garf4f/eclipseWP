@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-lazy-init="true">
+
+	<import resource="toshiba_context.xml" />
+	<import resource="sony_context.xml" />
+	<import resource="db_context.xml" />
+
+	<bean id="t1000" class="ru.garf.eclipse.impls.robot.ModelT1000"
+		p:hand-ref="toshibaHand" p:head-ref="sonyHead" p:leg-ref="toshibaLeg" depends-on="databaseBean">
+
+		<constructor-arg index="0" type="String" value="silver" />
+		<constructor-arg index="1" type="int" value="2006" />
+		<constructor-arg index="2" type="boolean" value="true" />
+
+	</bean>
+
+	<bean id="t1000Empty" class="ru.garf.eclipse.impls.robot.ModelT1000"
+		p:hand-ref="toshibaHand" p:head-ref="sonyHead" p:leg-ref="toshibaLeg"
+		scope="prototype">
+
+		<constructor-arg index="0" ref="sonyHand" />
+		<constructor-arg index="1" ref="toshibaLeg" />
+		<constructor-arg index="2" ref="sonyHead" />
+
+	</bean>
+
+</beans>

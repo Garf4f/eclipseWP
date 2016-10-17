@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="t1000_context.xml" />
+
+	<bean class="ru.garf.eclipse.main.MyBeanPostProcessor" />
+
+	<bean id="t1000Conveyor" class="ru.garf.eclipse.impls.conveyor.T1000Conveyor">
+		<lookup-method name="creatRobot" bean="t1000" />
+	</bean>
+
+	<bean id="t1000Pool" class="ru.garf.eclipse.impls.pool.T1000Pool">
+		<constructor-arg name="robotCollection">
+			<list>
+				<ref bean="t1000" />
+				<bean class="ru.garf.eclipse.impls.robot.ModelT1000" parent="baseModel">
+
+					<constructor-arg index="3" type="String" value="gold" />
+					<constructor-arg index="4" type="int" value="2007" />
+					<constructor-arg index="5" type="boolean" value="false" />
+
+				</bean>
+
+				<ref bean="t1000" />
+				<bean class="ru.garf.eclipse.impls.robot.ModelT1000" parent="baseModel">
+
+					<constructor-arg index="3" type="String" value="gold" />
+					<constructor-arg index="4" type="int" value="2009" />
+					<constructor-arg index="5" type="boolean" value="true" />
+
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="t1000GoldenPool" class="ru.garf.eclipse.impls.pool.T1000Pool">
+		<constructor-arg name="robotCollection"
+			value="#{t1000Pool.robotCollection.?[color.toUpperCase() eq 'GOLD']}">
+		</constructor-arg>
+	</bean>
+
+</beans>
