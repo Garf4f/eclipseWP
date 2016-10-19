@@ -13,9 +13,8 @@ import ru.garf.aop.annotations.ShowResult;
 import ru.garf.aop.annotations.ShowTime;
 
 @Component
-public class FileManager implements Manager {
+public class FileManager2 {
 
-	@Override
 	@ShowTime
 	@ShowResult
 	public Set<String> getExtensionList(String folder) {
@@ -37,7 +36,6 @@ public class FileManager implements Manager {
 
 	}
 
-	@Override
 	@ShowResult
 	public Map<String, Integer> getExtensionCounter(String folder) {
 

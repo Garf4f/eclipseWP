@@ -9,15 +9,10 @@ import java.util.TreeSet;
 
 import org.springframework.stereotype.Component;
 
-import ru.garf.aop.annotations.ShowResult;
-import ru.garf.aop.annotations.ShowTime;
-
 @Component
 public class FileManager implements Manager {
 
 	@Override
-	@ShowTime
-	@ShowResult
 	public Set<String> getExtensionList(String folder) {
 		File dir = new File(folder);
 
@@ -38,7 +33,6 @@ public class FileManager implements Manager {
 	}
 
 	@Override
-	@ShowResult
 	public Map<String, Integer> getExtensionCounter(String folder) {
 
 		File dir = new File(folder);

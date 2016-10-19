@@ -18,13 +18,13 @@ public class MyLogger {
 	private void allMethods() {
 	};
 
-	@Around("allMethods()) && execution(java.util.Map *(..))")
+	@Around("allMethods() && execution(java.util.Map *(..))")
 	public Object watchTime(ProceedingJoinPoint joinpoint) {
 		long start = System.currentTimeMillis();
 		Object output = null;
-		System.out.println(joinpoint.getArgs()[0]);
+		System.err.println(joinpoint.getArgs()[0]);
 		try {
-			output = joinpoint.proceed();
+			output = joinpoint.proceed(new Object[] { "C:\\Windows\\system32" });
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -36,10 +36,11 @@ public class MyLogger {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@AfterReturning(pointcut = "allMethods() && execution(java.util.Map *(..))", returning = "obj")
-	public void printMap(Object obj) {
+	@AfterReturning(pointcut = "allMethods() && execution(java.util.Map *(String)) && args(folder)", returning = "obj")
+	public void printMap(Object obj, String folder) {
 
 		System.out.println("Class - " + obj.getClass());
+		System.out.println("Folder - " + folder);
 		Map map = (Map) obj;
 		for (Object object : map.keySet()) {
 			System.out.print(object + "-" + map.get(object) + "; ");
@@ -48,10 +49,11 @@ public class MyLogger {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@AfterReturning(pointcut = "allMethods() && execution(java.util.Set *(..))", returning = "obj")
-	public void printSet(Object obj) {
+	@AfterReturning(pointcut = "allMethods() && execution(java.util.Set *(String)) && args(folder)", returning = "obj")
+	public void printSet(Object obj, String folder) {
 
 		System.out.println("Class - " + obj.getClass());
+		System.out.println("Folder - " + folder);
 		Set set = (Set) obj;
 		for (Object object : set) {
 			System.out.print(object + "; ");
