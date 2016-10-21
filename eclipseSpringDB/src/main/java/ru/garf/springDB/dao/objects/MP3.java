@@ -30,4 +30,10 @@ public class MP3 {
 		this.author = author;
 	}
 
+	public String toString() {
+		StringBuilder str = new StringBuilder("");
+		str.append("id: ").append(id).append(";   Name: ").append(name).append(";   Author: ").append(author).append(";");
+		return str.toString();
+	}
+
 }

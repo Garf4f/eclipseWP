@@ -3,7 +3,7 @@ package ru.garf.springDB.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import ru.garf.springDB.dao.impls.SQLiteDAO;
+import ru.garf.springDB.dao.interfaces.MP3DAO;
 import ru.garf.springDB.dao.objects.MP3;
 
 public class Start {
@@ -16,11 +16,14 @@ public class Start {
 		// new SQLiteDAO().insertWithJDBC(mp3);
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-		SQLiteDAO sqliteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
+		MP3DAO sqliteDAO = (MP3DAO) context.getBean("sqliteDAO");
 
-		sqliteDAO.delete(1);
-		sqliteDAO.delete(2);
-		sqliteDAO.delete(3);
+		// List<MP3> list = sqliteDAO.getAllMP3();
+		// System.out.println(sqliteDAO.getMP3ById(5));
+		for (MP3 mp4 : sqliteDAO.getAllMP3()) {
+			System.out.println(mp4);
+		}
+		System.out.println(sqliteDAO.getMP3ListByAuthor("кина"));
 
 	}
 
