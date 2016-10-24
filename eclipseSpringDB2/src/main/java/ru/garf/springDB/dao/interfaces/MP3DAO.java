@@ -3,6 +3,7 @@ package ru.garf.springDB.dao.interfaces;
 import java.util.List;
 import java.util.Map;
 
+import ru.garf.springDB.dao.objects.Author;
 import ru.garf.springDB.dao.objects.MP3;
 
 public interface MP3DAO {
@@ -26,5 +27,7 @@ public interface MP3DAO {
 	List<MP3> getAllMP3();
 
 	Map<String, Integer> getStat();
+
+	int getAuthorId(Author author);
 
 }
