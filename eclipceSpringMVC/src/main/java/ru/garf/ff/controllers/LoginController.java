@@ -55,6 +55,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/put-json-user", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<String> setJsonUser(@RequestBody User user) {
+		System.out.println("in");
 		logger.info(user.getName());
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
